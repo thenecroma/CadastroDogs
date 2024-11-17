@@ -1,0 +1,111 @@
+body
+{
+    color: black;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a
+{
+    color: white;
+    text-decoration: none;
+}
+
+header img
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 20%;
+    border: 5px solid blueviolet;
+}
+
+footer img
+{
+    width: 150px;
+    height: 150px;
+}
+
+footer
+{
+    display: flex;
+    justify-content: center;
+}
+
+.container h1
+{
+    color: blueviolet;
+}
+
+.center
+{
+    text-align: center;
+}
+
+.container
+{
+    padding: 0% 50px;
+}
+
+nav a:hover
+{
+    color: blueviolet;
+}
+
+main button
+{
+    background-color: mediumpurple;
+    color: white;
+    font: bolder;
+    padding: 30px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;    
+    font-size: medium;
+    transition: 0.5s;    
+}
+
+.modal
+{
+    display: none;
+    z-index: 1;
+    width: 300px;
+    width: 500px;
+    background-color: dimgray;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal h1
+{
+    color: black;
+    font-size: medium;
+}
+
+.modal input, .modal button
+{
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    margin: 2px;
+}
+
+.modal button
+{
+    background-color: mediumpurple;
+    color: white;
+}
+
+.modal button:hover
+{
+    background-color: blueviolet;
+}
+
+main button:hover
+{
+    background-color: blueviolet;
+}

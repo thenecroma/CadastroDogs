@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cachorros</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="center">
+                <img src="./img/Narigudo.jpg"></img>
+            </div>
+            <h1>Cadastro de Cachorros</h1>
+            <h2>Selecione o cachorrinho</h2>
+        </header>
+        <main>
+            <button name="BtnAdd" class="AddDog" onclick="AbrirMenu()">Adicionar Cachorro</button>
+
+            <div id="AdicionarDog" class="modal">
+                <span class="close" onclick="FecharMenu()">&times;</span>
+                <h1>Informe os dados do Dog:</h1>
+                <input type="text" id="nomeDog" placeholder="Nome do Cachorro" required>
+                <input type="text" id="nomeDono" placeholder="Nome do Dono" required>
+                <input type="text" id="telefone" placeholder="Telefone" required>
+                <input type="email" id="email" placeholder="E-mail" required>
+                <button onclick="FuncAddDog()">Incluir Dog Novo</button>
+            </div>
+
+            <table id="dados">
+                <thead>
+                    <tr>
+                        <th>Fotinha</th>
+                        <th>Dog</th>
+                        <th>Dono</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            
+            <script>
+                function AbrirMenu()
+                {
+                    document.getElementById('AdicionarDog').style.display = "flex";
+                }
+
+                function FecharMenu()
+                {
+                    document.getElementById('AdicionarDog').style.display = "none";
+                }
+
+                fetch('https://run.mocky.io/v3/22ebcc5c-d686-4704-b402-11c86132c938')
+                    .then(response => response.json())
+                    .then
+                    (
+                        data =>
+                        {
+                            const tabela = document.getElementById('dados').getElementsByTagName('tbody')[0];
+                            tabela.innerHTML = '';
+
+                            data.forEach
+                            (
+                                cachorro =>
+                                {
+                                    const linha = tabela.insertRow();
+                            
+                                    //Fotinhas
+                                    const celulaImagem = linha.insertCell();
+                                    const img = document.createElement('img');
+                                    img.src = cachorro.imagem;
+                                    celulaImagem.appendChild(img);
+
+                                    //Nome do Cachorro
+                                    const celulaNomeDog = linha.insertCell();
+                                    celulaNomeDog.textContent = cachorro.cachorro;
+
+                                    //Nome do Dono
+                                    const celulaDono = linha.insertCell();
+                                    celulaDono.textContent = cachorro.dono;
+
+                                    //Telefone
+                                    const celulaTelefone = linha.insertCell();
+                                    celulaTelefone.textContent = cachorro.telefone;
+
+                                    //E-mail
+                                    const celulaEmail = linha.insertCell();
+                                    celulaEmail.textContent = cachorro.email;
+
+                                    // Colocar as ações
+                                    const celulaAcoes = linha.insertCell();
+                                    const divAcoes = document.createElement('div');
+                                    divAcoes.className = 'actions';
+                                    
+                                    const btnEditar = document.createElement('button');
+                                    btnEditar.className = 'action-button';
+                                    btnEditar.textContent = 'Editar';
+
+                                    const btnExcluir = document.createElement('button');
+                                    btnExcluir.className = 'action-button';
+                                    btnExcluir.textContent = 'Excluir';
+
+                                    divAcoes.appendChild(btnEditar);
+                                    divAcoes.appendChild(btnExcluir);
+                                    celulaAcoes.appendChild(divAcoes);
+                                }
+                            )
+                        }
+                    )
+                    .catch
+                    (
+                        error =>
+                        {
+                            console.error('Erro ao consultar: ', error);
+                        }
+                    )
+                
+                function FuncAddDog()
+                {
+                    const nomeCachorro = document.getElementById('nomeCachorro').value;
+                    const nomeDono = document.getElementById('nomeDono').value;
+                    const telefone = document.getElementById('telefone').value;
+                    const email = document.getElementById('email').value;
+                    const imagem = document.getElementById('imagem').value;
+
+                    const tabela = document.getElementById('dados').getElementsByTagName('tbody')[0];
+
+                    const linha = tabela.insertRow();
+
+                    const celulaImagem = linha.insertCell();
+                    const img = document.createElement('img');
+                    img.src = imagem;
+                    celulaImagem.appendChild(img);
+
+                    const celulaNomeCachorro = linha.insertCell();
+                    celulaNomeCachorro.textContent = nomeCachorro;
+
+                    const celulaNomeDono = linha.insertCell();
+                    celulaNomeDono.textContent = nomeDono;
+
+                    const celulaTelefone = linha.insertCell();
+                    celulaTelefone.textContent = telefone;
+
+                    const celulaEmail = linha.insertCell();
+                    celulaEmail.textContent = email;
+
+                    divAcoes.appendChild(btnEditar);
+                    divAcoes.appendChild(btnExcluir);
+                    celulaAcoes.appendChild(divAcoes);
+
+                    
+                    document.getElementById('nomeCachorro').value = '';
+                    document.getElementById('nomeDono').value = '';
+                    document.getElementById('telefone').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('imagem').value = '';
+
+                    
+                    closeModal();
+                }
+            </script>            
+        </main>
+    </div>
+</body>
+</html>
